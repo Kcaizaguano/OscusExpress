@@ -1,112 +1,173 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_authenticator/amplify_authenticator.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/config/amplifyconfiguration.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    _configureAmplify();
+  }
+
+  void _configureAmplify() async {
+    try {
+      await Amplify.addPlugin(AmplifyAuthCognito());
+      await Amplify.configure(amplifyconfig);
+      safePrint('Successfully configured');
+    } on Exception catch (e) {
+      safePrint('Error configuring Amplify: $e');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+    return Authenticator(
+      // `authenticatorBuilder` is used to customize the UI for one or more steps
+      authenticatorBuilder: (BuildContext context, AuthenticatorState state) {
+        switch (state.currentStep) {
+          case AuthenticatorStep.signIn:
+            return CustomScaffold(
+              state: state,
+              // A prebuilt Sign In form from amplify_authenticator
+              body: SignInForm(),
+              // A custom footer with a button to take the user to sign up
+              footer: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('¿No tienes cuenta?'),
+                  TextButton(
+                    onPressed: () => state.changeStep(
+                      AuthenticatorStep.signUp,
+                    ),
+                    child: const Text('Registrate'),
+                  ),
+                ],
+              ),
+            );
+          case AuthenticatorStep.signUp:
+            return CustomScaffold(
+              state: state,
+              body: SignUpForm.custom(
+                fields: [
+                  SignUpFormField.username(),
+                  SignUpFormField.password(),
+                  SignUpFormField.passwordConfirmation(),
+                  SignUpFormField.email(required: true),
+                  SignUpFormField.custom(
+                    title: 'Cedula',
+                    attributeKey: CognitoUserAttributeKey.name,
+                    required: true,
+                  ),
+                  SignUpFormField.custom(
+                    title: 'Código Dactilar',
+                    attributeKey: CognitoUserAttributeKey.familyName,
+                    required: true,
+                  ),
+                ],
+              ),
+              footer: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('¿Ya tienes una cuenta?'),
+                  TextButton(
+                    onPressed: () => state.changeStep(
+                      AuthenticatorStep.signIn,
+                    ),
+                    child: const Text('Iniciar Sesión'),
+                  ),
+                ],
+              ),
+            );
+          case AuthenticatorStep.confirmSignUp:
+            return CustomScaffold(
+              state: state,
+              // A prebuilt Confirm Sign Up form from amplify_authenticator
+              body: ConfirmSignUpForm(),
+            );
+          case AuthenticatorStep.resetPassword:
+            return CustomScaffold(
+              state: state,
+              // A prebuilt Reset Password form from amplify_authenticator
+              body: ResetPasswordForm(),
+            );
+          case AuthenticatorStep.confirmResetPassword:
+            return CustomScaffold(
+              state: state,
+              // A prebuilt Confirm Reset Password form from amplify_authenticator
+              body: const ConfirmResetPasswordForm(),
+            );
+          default:
+            // Returning null defaults to the prebuilt authenticator for all other steps
+            return null;
+        }
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.from(
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.blue,
+            backgroundColor: Colors.blueGrey,
+          ),
+        ).copyWith(
+          indicatorColor: Colors.red,
+        ),
+        builder: Authenticator.builder(),
+        home: const Scaffold(
+          body: Center(
+            child: Text('You are logged in!'),
+          ),
+        ),
       ),
-      home: const HomePage(title: 'AppBar'),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
+/// A widget that displays a logo, a body, and an optional footer.
+class CustomScaffold extends StatelessWidget {
+  const CustomScaffold({
+    super.key,
+    required this.state,
+    required this.body,
+    this.footer,
+  });
 
-  final String title;
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  final AuthenticatorState state;
+  final Widget body;
+  final Widget? footer;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-        ),
-        title: Text(widget.title),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.add),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // App logo
+              Padding(
+                padding: const EdgeInsets.only(top: 32),
+                child: Center(child: Image.asset('assets/logo-oscus.png')),
+              ),
+              Container(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: body,
+              ),
+            ],
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.remove),
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Contenido del Body:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Inicio',
-            icon: Icon(Icons.home),
-          ),
-          BottomNavigationBarItem(
-            label: 'Lista',
-            icon: Icon(Icons.list_alt),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        child: const Icon(Icons.add),
-      ),
-      persistentFooterButtons: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-              onPressed: () {},
-              child: const Text('Botón 1'),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('Botón 2'),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('Botón 3'),
-            ),
-          ],
-        ),
-      ],
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      persistentFooterButtons: footer != null ? [footer!] : null,
     );
   }
 }
