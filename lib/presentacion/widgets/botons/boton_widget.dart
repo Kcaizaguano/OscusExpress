@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/presentacion/widgets/texts/text_widget.dart';
 
 class BotonWidget extends StatelessWidget {
   final String text;
@@ -20,21 +21,14 @@ class BotonWidget extends StatelessWidget {
       width: 300,
       height: 50,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            backgroundColor: color, // Color de fondo
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            elevation: 20),
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 16,
-            color: textColor,
-          ),
-        ),
-      ),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: color, // Color de fondo
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              elevation: 20),
+          onPressed: onPressed,
+          child: TextWidget(text: text, textColor: textColor, size: 16)),
     );
   }
 }

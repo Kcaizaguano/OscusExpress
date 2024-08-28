@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/config/colores/app_colors.dart';
 import 'package:flutter_application_2/config/constantes/environment.dart';
 import 'package:flutter_application_2/presentacion/screens/login/opciones_screen.dart';
-import 'package:flutter_application_2/presentacion/widgets/boton/boton_widget.dart';
+import 'package:flutter_application_2/presentacion/widgets/botons/boton_widget.dart';
 import 'package:go_router/go_router.dart';
 
 class BienvenidoScreen extends StatelessWidget {
