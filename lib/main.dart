@@ -3,6 +3,8 @@ import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/config/amplifyconfiguration.dart';
+import 'package:flutter_application_2/config/router/app_router.dart';
+import 'package:flutter_application_2/config/theme/app_theme.dart';
 
 void main() => runApp(const MyApp());
 
@@ -30,6 +32,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  /*
   @override
   Widget build(BuildContext context) {
     return Authenticator(
@@ -129,6 +132,19 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
+    );
+  }
+
+
+
+*/
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routerConfig: appRouter,
+      theme: AppTheme().theme(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
