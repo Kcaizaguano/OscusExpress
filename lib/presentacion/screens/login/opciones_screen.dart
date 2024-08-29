@@ -12,14 +12,15 @@ class OpcionesScreen extends StatelessWidget {
       appBar: const AppBarLogoOscusWidget(),
       body: Column(
         children: [
-          // Espacio vacío para empujar los botones al centro
           Expanded(
             child: Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _MenuBotton(
-                    onPressed: () {},
+                    onPressed: () {
+                      //AuthenticatorStep.signUp;
+                    },
                     icon: Icons.person,
                     text: "Usuario y Contraseña",
                   ),
