@@ -1,5 +1,6 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/config/colores/app_colors.dart';
 import 'package:flutter_application_2/presentacion/widgets/appBars/app_bar_logo_oscus_widget.dart';
 
 class CustomScaffold extends StatelessWidget {
@@ -17,6 +18,7 @@ class CustomScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.blancoOscus,
       appBar: const AppBarLogoOscusWidget(),
       body: Padding(
         padding: const EdgeInsets.all(16),

@@ -46,39 +46,9 @@ class _MyAppState extends State<MyApp> {
         authenticatorBuilder: (BuildContext context, AuthenticatorState state) {
           switch (state.currentStep) {
             case AuthenticatorStep.signIn:
-              return CustomScaffold(
-                state: state,
-                body: SignInForm(),
-                footer: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('¿No tienes cuenta?'),
-                    TextButton(
-                      onPressed: () => state.changeStep(
-                        AuthenticatorStep.signUp,
-                      ),
-                      child: const Text('Registrate'),
-                    ),
-                  ],
-                ),
-              );
+              return LoginScreen(state: state);
             case AuthenticatorStep.signUp:
-              return CustomScaffold(
-                state: state,
-                body: const RegistrarseWidget(),
-                footer: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text('¿Ya tienes una cuenta?'),
-                    TextButton(
-                      onPressed: () => state.changeStep(
-                        AuthenticatorStep.signIn,
-                      ),
-                      child: const Text('Iniciar Sesión'),
-                    ),
-                  ],
-                ),
-              );
+              return RegisterScreen(state: state);
             case AuthenticatorStep.confirmSignUp:
               return CustomScaffold(
                 state: state,
