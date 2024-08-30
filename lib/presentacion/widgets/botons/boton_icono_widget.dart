@@ -36,8 +36,10 @@ class BotonIconoWidget extends StatelessWidget {
       ),
       style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          side: BorderSide(color: textColor)),
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+          side: BorderSide(color: textColor),
+          fixedSize: const Size(250, 50),
+          elevation: 15),
     );
   }
 }

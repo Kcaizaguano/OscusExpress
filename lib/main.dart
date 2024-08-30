@@ -4,6 +4,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/config/amplifyconfiguration.dart';
 import 'package:flutter_application_2/config/router/app_router.dart';
+import 'package:flutter_application_2/config/theme/app_theme.dart';
 import 'package:flutter_application_2/personalizacionAmplify/custom_button_resolver.dart';
 import 'package:flutter_application_2/personalizacionAmplify/custom_input_resolver.dart';
 import 'package:flutter_application_2/presentacion/widgets/widgets.dart';
@@ -69,6 +70,7 @@ class _MyAppState extends State<MyApp> {
           }
         },
         child: MaterialApp.router(
+          theme: AppTheme().theme(),
           debugShowCheckedModeBanner: false,
           routerConfig: appRouter,
         ));

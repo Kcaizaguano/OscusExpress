@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color azulOscus = Color(0xFF032976);
+  static const Color azulOscus = Color(0xFF194996);
   static const Color celesteOscus = Color(0xFF82BCFF);
   static const Color azulSplashOscus = Color(0xFF1264E9);
   static const Color verdeOscus = Color(0xFFb0c506);

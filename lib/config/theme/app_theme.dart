@@ -21,6 +21,7 @@ const List<Color> _colorThemes = [
 class AppTheme {
   ThemeData theme() {
     return ThemeData(
+      fontFamily: 'Montserrat',
       useMaterial3: true,
       colorSchemeSeed: _colorThemes[0],
     );
