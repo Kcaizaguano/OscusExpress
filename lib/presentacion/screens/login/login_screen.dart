@@ -13,17 +13,19 @@ class LoginScreen extends StatelessWidget {
     return CustomScaffold(
       state: state,
       body: SignInForm(),
-      footer: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('¿No tienes cuenta?'),
-          TextButton(
-            onPressed: () => state.changeStep(
-              AuthenticatorStep.signUp,
+      footer: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('¿No tienes cuenta?'),
+            TextButton(
+              onPressed: () => state.changeStep(
+                AuthenticatorStep.signUp,
+              ),
+              child: const Text('Registrate'),
             ),
-            child: const Text('Registrate'),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

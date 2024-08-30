@@ -3,8 +3,7 @@ import 'package:flutter_application_2/presentacion/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
-    initialLocation:
-        '/tomar_fotografia', //cuando quiero que inicie en una ruta en especifico,
+    //initialLocation:'/tomar_fotografia', //cuando quiero que inicie en una ruta en especifico,
     routes: [
       GoRoute(
         path: '/',

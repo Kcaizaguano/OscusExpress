@@ -6,12 +6,12 @@ class CustomButtonResolver extends ButtonResolver {
 
   @override
   String signIn(BuildContext context) {
-    return 'INGRESAR';
+    return 'Ingresar';
   }
 
   @override
   String signUp(BuildContext context) {
-    return 'REGISTRARSE';
+    return 'Registrarse';
   }
 
   @override
@@ -22,5 +22,35 @@ class CustomButtonResolver extends ButtonResolver {
   @override
   String forgotPassword(BuildContext context) {
     return '¿Olvidaste tu contraseña?';
+  }
+
+  @override
+  String confirmResetPassword(BuildContext context) {
+    return 'Restablecer contraseña';
+  }
+
+  @override
+  String changePassword(BuildContext context) {
+    return 'Cambiar contraseña';
+  }
+
+  @override
+  String sendCode(BuildContext context) {
+    return 'Enviar código';
+  }
+
+  @override
+  String verify(BuildContext context) {
+    return 'Verificar';
+  }
+
+  @override
+  String signout(BuildContext context) {
+    return 'Salir';
+  }
+
+  @override
+  String backTo(BuildContext context, previousStep) {
+    return 'Volver para iniciar Sesión';
   }
 }

@@ -39,6 +39,7 @@ class _TomarFotografiaScreenState extends State<TomarFotografiaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const AppBarLogoOscusWidget(),
       backgroundColor: AppColors.blancoOscus,
       body: Center(
         child: Column(
@@ -75,7 +76,7 @@ class _TomarFotografiaScreenState extends State<TomarFotografiaScreen> {
                     Icons.image,
                     size: 150,
                   ),
-            const SizedBox(height: 40),
+            const SizedBox(height: 10),
             BotonIconoWidget(
               icon: Icons.camera_enhance_rounded,
               text: _image == null ? 'Tomar  foto' : 'Volver a tomar foto',
@@ -84,6 +85,7 @@ class _TomarFotografiaScreenState extends State<TomarFotografiaScreen> {
               onPressed: () => captureImages(),
               buttonColor: AppColors.azulOscus,
             ),
+            const SizedBox(height: 10),
             BotonContinuarWiget(onPressed: () {})
           ],
         ),

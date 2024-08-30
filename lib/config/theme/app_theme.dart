@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/config/colores/app_colors.dart';
 
 const Color azulOscus = Color(0xFF194996);
 const Color verdeOscus = Color(0xFFb0c506);
@@ -20,10 +21,11 @@ const List<Color> _colorThemes = [
 
 class AppTheme {
   ThemeData theme() {
-    return ThemeData(
-      fontFamily: 'Montserrat',
+    return ThemeData.from(
+      //fontFamily: 'Montserrat',
       useMaterial3: true,
-      colorSchemeSeed: _colorThemes[0],
+      colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.blue, backgroundColor: AppColors.blancoOscus),
     );
   }
 }

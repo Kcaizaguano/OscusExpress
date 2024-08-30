@@ -13,8 +13,8 @@ class BotonIconoWidget extends StatelessWidget {
     required this.icon,
     required this.text,
     required this.textColor,
-    this.iconColor = Colors.white12, // Color predeterminado para el ícono
-    this.buttonColor = Colors.white, // Color predeterminado para el botón
+    this.iconColor = Colors.white12,
+    this.buttonColor = Colors.white,
     required this.onPressed,
   });
 
@@ -36,9 +36,9 @@ class BotonIconoWidget extends StatelessWidget {
       ),
       style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor,
-          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           side: BorderSide(color: textColor),
-          fixedSize: const Size(250, 50),
+          //fixedSize: const Size(200, 70),
           elevation: 15),
     );
   }
