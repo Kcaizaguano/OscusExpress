@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:flutter_application_2/presentacion/widgets/widgets.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
   final AuthenticatorState state;
@@ -19,9 +20,9 @@ class LoginScreen extends StatelessWidget {
           children: [
             const Text('¿No tienes cuenta?'),
             TextButton(
-              onPressed: () => state.changeStep(
-                AuthenticatorStep.signUp,
-              ),
+              onPressed: () {
+                context.pushNamed(InicioRegisterScreen.nombre, extra: state);
+              },
               child: const Text('Registrate'),
             ),
           ],

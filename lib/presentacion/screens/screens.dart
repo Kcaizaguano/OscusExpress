@@ -1,3 +1,4 @@
+export 'package:flutter_application_2/presentacion/screens/validacionUsuarios/inicio_register_screen.dart';
 export 'package:flutter_application_2/presentacion/screens/validacionUsuarios/tomar_fotografia_screen.dart';
 export 'package:flutter_application_2/presentacion/screens/login/register_screen.dart';
 export 'package:flutter_application_2/presentacion/screens/login/login_screen.dart';

@@ -1,7 +1,6 @@
 // lib/presentation/auth_widget.dart
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/config/router/app_router.dart';
 import 'package:flutter_application_2/personalizacionAmplify/custom_button_resolver.dart';
 import 'package:flutter_application_2/personalizacionAmplify/custom_input_resolver.dart';
 import 'package:flutter_application_2/presentacion/widgets/widgets.dart';
@@ -74,10 +73,7 @@ class AutenticacionScreen extends StatelessWidget {
             return null;
         }
       },
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: appRouter,
-      ),
+      child: const SizedBox.shrink(),
     );
   }
 }

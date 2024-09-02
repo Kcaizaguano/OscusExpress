@@ -22,10 +22,10 @@ const List<Color> _colorThemes = [
 class AppTheme {
   ThemeData theme() {
     return ThemeData.from(
-      //fontFamily: 'Montserrat',
       useMaterial3: true,
       colorScheme: ColorScheme.fromSwatch(
           primarySwatch: Colors.blue, backgroundColor: AppColors.blancoOscus),
-    );
+    ).copyWith(
+        textTheme: ThemeData.light().textTheme.apply(fontFamily: 'Montserrat'));
   }
 }
