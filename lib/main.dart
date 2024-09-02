@@ -8,8 +8,14 @@ import 'package:flutter_application_2/config/theme/app_theme.dart';
 import 'package:flutter_application_2/personalizacionAmplify/custom_button_resolver.dart';
 import 'package:flutter_application_2/personalizacionAmplify/custom_input_resolver.dart';
 import 'package:flutter_application_2/presentacion/widgets/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() => runApp(const MyApp());
+//void main() => runApp(const MyApp());
+
+Future<void> main() async {
+  await dotenv.load(fileName: '.env');
+  runApp(const MyApp());
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});

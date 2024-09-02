@@ -2,6 +2,7 @@ import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/config/colores/app_colors.dart';
 import 'package:flutter_application_2/presentacion/widgets/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
 
 class InicioRegisterScreen extends StatefulWidget {
@@ -59,6 +60,8 @@ class _InicioRegisterScreenState extends State<InicioRegisterScreen> {
                   // Puedes hacer algo con los valores aquí
                   final cedula = _cedulaController.text;
                   final codigoDactilar = _codigoDactilarController.text;
+                  print(
+                      'VARIABLE DE ENTORNO ES: ${dotenv.env['URL_API_BALCON_SERVICIOS']} ');
                   // Ejemplo de navegación
                   //context.pushNamed(TomarFotografiaScreen.nombre);
                 },
