@@ -1,33 +1,23 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/config/colores/app_colors.dart';
+import 'package:flutter_application_2/presentacion/providers/cedula_provider.dart';
+import 'package:flutter_application_2/presentacion/providers/codigo_dactilar_provider.dart';
 import 'package:flutter_application_2/presentacion/widgets/widgets.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class InicioRegisterScreen extends StatefulWidget {
+class InicioRegisterScreen extends ConsumerWidget {
   final AuthenticatorState state;
   static const nombre = 'inicio_registro_screen';
   const InicioRegisterScreen({super.key, required this.state});
 
   @override
-  _InicioRegisterScreenState createState() => _InicioRegisterScreenState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final TextEditingController _cedulaController = TextEditingController();
+    final TextEditingController _codigoDactilarController =
+        TextEditingController();
 
-class _InicioRegisterScreenState extends State<InicioRegisterScreen> {
-  final TextEditingController _cedulaController = TextEditingController();
-  final TextEditingController _codigoDactilarController =
-      TextEditingController();
-
-  @override
-  void dispose() {
-    _cedulaController.dispose();
-    _codigoDactilarController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarLogoOscusWidget(),
       body: Center(
@@ -57,13 +47,13 @@ class _InicioRegisterScreenState extends State<InicioRegisterScreen> {
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                  // Puedes hacer algo con los valores aquí
                   final cedula = _cedulaController.text;
                   final codigoDactilar = _codigoDactilarController.text;
-                  print(
-                      'VARIABLE DE ENTORNO ES: ${dotenv.env['URL_API_BALCON_SERVICIOS']} ');
+                  ref.read(cedulaProvider.notifier).state = cedula;
+                  ref.read(codigoDactilarProvider.notifier).state =
+                      codigoDactilar;
                   // Ejemplo de navegación
-                  //context.pushNamed(TomarFotografiaScreen.nombre);
+                  context.pushNamed(TomarFotografiaScreen.nombre);
                 },
                 child: const Text('Continuar'),
               ),

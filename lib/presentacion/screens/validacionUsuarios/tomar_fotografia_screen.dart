@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/config/colores/app_colors.dart';
 import 'package:flutter_application_2/presentacion/widgets/widgets.dart';
-import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 
@@ -90,8 +89,7 @@ class _TomarFotografiaScreenState extends State<TomarFotografiaScreen> {
             _image != null
                 ? BotonContinuarWiget(onPressed: () {})
                 : const SizedBox.shrink(),
-            IconButton(
-                onPressed: () => context.pop(), icon: Icon(Icons.ac_unit_sharp))
+            IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit_sharp))
           ],
         ),
       ),
