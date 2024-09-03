@@ -37,4 +37,9 @@ final appRouter = GoRouter(
           return RegisterScreen(state: authState!);
         },
       ),
+      GoRoute(
+        path: '/validacion',
+        name: ProcesoValidacionScreen.nombre,
+        builder: (context, state) => const ProcesoValidacionScreen(),
+      ),
     ]);
