@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/data/repositorios/repositorios.dart';
 import 'package:flutter_application_2/data/servicios/servicios.dart';
 import 'package:flutter_application_2/presentacion/providers/cedula_provider.dart';
 import 'package:flutter_application_2/presentacion/providers/codigo_dactilar_provider.dart';
@@ -38,9 +39,13 @@ class _validaciones extends ConsumerWidget {
 
 Future<void> _crearSessionID(BuildContext context) async {
   final autenticacionAwsServices = AutenticacionAwsServices();
+  final RespuestaApiRepo respuestaApiRepo =
+      RespuestaApiRepo(autenticacionAwsServices: autenticacionAwsServices);
   try {
-    await autenticacionAwsServices.getSessionID();
+    final response = await respuestaApiRepo.getSessionID();
+    print('la respuesta es ${response}');
   } catch (e) {
+    print('ERRO AL COMPARA ROSTROS $e');
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Error al comparar rostros: $e')),
     );
