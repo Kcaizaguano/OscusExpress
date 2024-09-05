@@ -3,7 +3,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/config/colores/app_colors.dart';
 import 'package:flutter_application_2/presentacion/providers/foto_provider.dart';
-import 'package:flutter_application_2/presentacion/screens/validacionUsuarios/inicio_register_screen.dart';
 import 'package:flutter_application_2/presentacion/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
