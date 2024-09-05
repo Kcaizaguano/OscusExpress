@@ -54,7 +54,7 @@ class _validaciones extends ConsumerWidget {
                 //final sessionID = _crearSessionID();
                 //if (await _comparacionRostros(ref)) {}
                 //context.pushNamed(HomePageScreen.nombre);
-                context.pop();
+                context.go('/home');
               },
               icon: const Icon(Icons.access_time_sharp))
         ],
