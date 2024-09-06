@@ -11,6 +11,7 @@ import 'package:flutter_application_2/presentacion/providers/validacion_login_pr
 import 'package:flutter_application_2/presentacion/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProcesoValidacionScreen extends StatefulWidget {
   static const nombre = 'proceso_validacion';
@@ -54,7 +55,9 @@ class _validaciones extends ConsumerWidget {
                 //final sessionID = _crearSessionID();
                 //if (await _comparacionRostros(ref)) {}
                 //context.pushNamed(HomePageScreen.nombre);
-                context.go('/home');
+                //context.pop();
+                //context.go('/home');
+                _launchURL();
               },
               icon: const Icon(Icons.access_time_sharp))
         ],
@@ -72,6 +75,14 @@ Future<String> _crearSessionID() async {
     return "${response.informacion}";
   } catch (e) {
     return "ERROR EN LA COMPARACION DE ROSTROS: $e";
+  }
+}
+
+_launchURL() async {
+  final Uri url = Uri.parse(
+      'https://172.16.100.13:8086/5336b7a3-41c2-4e21-aa87-e2d646a85b44');
+  if (!await launchUrl(url)) {
+    throw Exception('Could not launch $url');
   }
 }
 

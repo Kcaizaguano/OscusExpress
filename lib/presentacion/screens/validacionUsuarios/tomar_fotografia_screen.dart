@@ -57,28 +57,28 @@ class _TomarFotografiaScreenState extends ConsumerState<TomarFotografiaScreen> {
                 textColor: AppColors.verdeOscus,
               ),
             ),
-            _image != null
-                ? Container(
-                    width: 400,
-                    height: 500,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: AppColors.azulOscus,
-                        width: 4,
-                      ),
-                    ),
-                    child: ClipOval(
-                      child: Image.file(
-                        _image!,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  )
-                : const Icon(
-                    Icons.image,
-                    size: 150,
-                  ),
+            // _image != null
+            //     ? Container(
+            //         width: 400,
+            //         height: 500,
+            //         decoration: BoxDecoration(
+            //           shape: BoxShape.circle,
+            //           border: Border.all(
+            //             color: AppColors.azulOscus,
+            //             width: 4,
+            //           ),
+            //         ),
+            //         child: ClipOval(
+            //           child: Image.file(
+            //             _image!,
+            //             fit: BoxFit.cover,
+            //           ),
+            //         ),
+            //       )
+            //     : const Icon(
+            //         Icons.image,
+            //         size: 150,
+            //       ),
             const SizedBox(height: 10),
             BotonIconoWidget(
               icon: Icons.camera_enhance_rounded,
@@ -92,7 +92,9 @@ class _TomarFotografiaScreenState extends ConsumerState<TomarFotografiaScreen> {
             _image != null
                 ? BotonContinuarWiget(onPressed: () {
                     ref.read(fotoProvider.notifier).state = _base64Image!;
-                    context.pushNamed(ProcesoValidacionScreen.nombre);
+                    context.pop();
+                    context.go('/validacion');
+                    //context.pushNamed(ProcesoValidacionScreen.nombre);
                   })
                 : const SizedBox.shrink(),
           ],

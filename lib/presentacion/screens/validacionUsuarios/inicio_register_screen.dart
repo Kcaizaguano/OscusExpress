@@ -54,6 +54,8 @@ class InicioRegisterScreen extends ConsumerWidget {
                       codigoDactilar;
                   // Ejemplo de navegación
                   state.changeStep(AuthenticatorStep.signUp);
+                  context.pop();
+                  //context.go('/inicio-registro');
                   context.pushNamed(TomarFotografiaScreen.nombre);
                 },
                 child: const Text('Continuar'),
